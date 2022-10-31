@@ -46,7 +46,8 @@ const handleRemoveFields = (index) => {
 
 function handleSubmit(event){
   event.preventDefault();
-  alert(JSON.stringify(inputFields))
+  // alert(JSON.stringify(inputFields))
+  console.log("Submit Your Form successfully", inputFields)
 }
   return (
     <>
