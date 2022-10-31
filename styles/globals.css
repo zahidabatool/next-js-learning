@@ -1,0 +1,81 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: black;
+    background: #fff;
+  }
+}
+
+/* Navbar */
+.menu-bar {
+  background: #000;
+  padding: 15px 10px 18px;
+  text-align: center;
+  width: 40%;
+  margin: 10px auto;
+  border-radius: 50px;
+}
+
+.menu-bar a {
+  color: #fff;
+  padding: 7px 30px 10px;
+  border-radius: 50px;
+  font-size: 16px;
+}
+
+.menu-bar a:hover {
+  color: #000;
+  background: #fff;
+}
+
+.mt-20 {
+  margin-top: 50px;
+}
+
+.form-wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-wrapper .form-input {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  width: 80%;
+  color: #212529;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  margin-bottom: 15px;
+}
+
+.btn-form {
+  background: #212529;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 30px;
+  margin: 10px auto 20px;
+  
+}

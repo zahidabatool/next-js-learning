@@ -1,0 +1,24 @@
+// import Head from 'next/head'
+// import Link from "next/link"; 
+import Navbar from "../comp/navbar";
+import Footer from "../comp/Footer"
+import styles from '../styles/Home.module.css'
+
+export default function Home() {
+  return (
+    <div className={styles.container}>
+      <Navbar />
+      <form action="" method="post" className="form-wrapper">
+      <h1 className="mt-20">Form handling</h1>
+          <label htmlFor="first">First name:</label>
+          <input type="text" name='name' className="form-input" required />
+          <label htmlFor="last">Last name:</label>
+          <input type="text" id="last" name="last" className="form-input" />
+          <label htmlFor="last">Email:</label>
+          <input type="text" id="last" name="email" className="form-input" />
+          <button type="submit" className="btn-form">Submit</button>
+      </form>
+      <Footer/>
+    </div>
+  )
+}
