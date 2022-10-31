@@ -44,32 +44,22 @@ const handleRemoveFields = (index) => {
   setInputField(values);
 }
 
+function handleSubmit(event){
+  event.preventDefault();
+  alert(JSON.stringify(inputFields))
+}
   return (
     <>
     <div className={styles.container}>
       <Navbar />
       <h1 className="mt-20">Form handling</h1>
-      <form className={classes.root}>
+      <form className={classes.root} onSubmit={handleSubmit}>
         {inputFields.map((inputField, index) => (
             <div key={index}>
               <TextField variant="outlined"  type="text" name = "firstName" label= "First Name"
                 onChange={event => handleChangeInput(index, event)} value = {inputField.firstName}/> 
-              <IconButton onClick = {() => handleRemoveFields(index)}>
-                <RemoveIcon/>
-              </IconButton>
-              <IconButton onClick = {() => handleAddFields()}>
-                <ControlPointIcon />
-              </IconButton>
-              <br></br>
-              <TextField variant="outlined"  type="text" name = "firstName" label= "Last Name"
+              <TextField variant="outlined"  type="text" name = "lastName" label= "Last Name"
                 onChange={event => handleChangeInput(index, event)} value = {inputField.lastName}/> 
-              <IconButton onClick = {() => handleRemoveFields(index)}>
-                <RemoveIcon/>
-              </IconButton>
-              <IconButton onClick = {() => handleAddFields()}>
-                <ControlPointIcon />
-              </IconButton>
-              <br></br>
               <TextField variant="outlined"  type="text" name = "email" label= "Email"
                 onChange={event => handleChangeInput(index, event)} value = {inputField.email}/> 
               <IconButton onClick = {() => handleRemoveFields(index)}>
