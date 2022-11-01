@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
   const classes = useStyles()
   const [inputFields , setInputField] = useState([
-  {firstName: '', lastName: '', email: ''} 
+  {name: '',  email: ''} 
 ])
 
 const handleChangeInput = (index , event) => {
@@ -34,16 +34,19 @@ const handleChangeInput = (index , event) => {
   setInputField(values);
 }
 
+// Add New field
 const handleAddFields = () => {
-  setInputField([...inputFields, {firstName: '', lastName: '' , email: ''}])
-
+  setInputField([...inputFields, {name: '', email: ''}])
 }
+
+// Remove field
 const handleRemoveFields = (index) => {
   const values = [...inputFields];
   values.splice(index, 1);
   setInputField(values);
 }
 
+// Submit Form
 function handleSubmit(event){
   event.preventDefault();
   // alert(JSON.stringify(inputFields))
@@ -57,12 +60,12 @@ function handleSubmit(event){
       <form className={classes.root} onSubmit={handleSubmit}>
         {inputFields.map((inputField, index) => (
             <div key={index}>
-              <TextField variant="outlined"  type="text" name = "firstName" label= "First Name"
-                onChange={event => handleChangeInput(index, event)} value = {inputField.firstName}/> 
-              <TextField variant="outlined"  type="text" name = "lastName" label= "Last Name"
-                onChange={event => handleChangeInput(index, event)} value = {inputField.lastName}/> 
-              <TextField variant="outlined"  type="text" name = "email" label= "Email"
-                onChange={event => handleChangeInput(index, event)} value = {inputField.email}/> 
+              <TextField  type="text" variant="outlined"
+                onChange={event => handleChangeInput(index, event)}/> 
+              {/* <TextField variant="outlined"  type="text" name = "lastName" label= "Last Name"
+                onChange={event => handleChangeInput(index, event)} value = {inputField.lastName}/>  */}
+              {/* <TextField variant="outlined"  type="text" name = "email" label= "Email"
+                onChange={event => handleChangeInput(index, event)} value = {inputField.email}/>  */}
               <IconButton onClick = {() => handleRemoveFields(index)}>
                 <RemoveIcon/>
               </IconButton>
