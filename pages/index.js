@@ -23,10 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles()
-  const [inputFields , setInputField] = useState([
-  {name: '',  email: ''} 
-])
-
+  const [inputFields , setInputField] = useState([{name: ''}]);
 const handleChangeInput = (index , event) => {
   // console.log(index , event.target.value)
   const values = [...inputFields];
@@ -35,8 +32,10 @@ const handleChangeInput = (index , event) => {
 }
 
 // Add New field
-const handleAddFields = () => {
-  setInputField([...inputFields, {name: '', email: ''}])
+const handleAddFields = (index) => {
+  const newFormValues = [...inputFields];
+  newFormValues.splice((0, index), {name: ''} , newFormValues.slice(index));
+  setInputField(newFormValues);
 }
 
 // Remove field
@@ -49,7 +48,6 @@ const handleRemoveFields = (index) => {
 // Submit Form
 function handleSubmit(event){
   event.preventDefault();
-  // alert(JSON.stringify(inputFields))
   console.log("Submit Your Form successfully", inputFields)
 }
   return (
@@ -69,7 +67,7 @@ function handleSubmit(event){
               <IconButton onClick = {() => handleRemoveFields(index)}>
                 <RemoveIcon/>
               </IconButton>
-              <IconButton onClick = {() => handleAddFields()}>
+              <IconButton onClick = {() => handleAddFields(index + 1)}>
                 <ControlPointIcon />
               </IconButton>
             </div>
