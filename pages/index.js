@@ -10,73 +10,86 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: 10
-    },
-  },
-  button: {
-    margin: 10
-  }
-}))
-
 export default function Home() {
-  const classes = useStyles()
-  const [inputFields , setInputField] = useState([{name: ''}]);
-const handleChangeInput = (index , event) => {
-  // console.log(index , event.target.value)
-  const values = [...inputFields];
-  values[index][event.target.name] = event.target.value;
-  setInputField(values);
-}
+  const [formValues, setFormValues] = useState([{ name: "" }]);
+  const [formCount, setFormCount] = useState(0);
 
-// Add New field
-const handleAddFields = (index) => {
-  const newFormValues = [...inputFields];
-  newFormValues.splice((0, index), {name: ''} , newFormValues.slice(index));
-  setInputField(newFormValues);
-}
 
-// Remove field
-const handleRemoveFields = (index) => {
-  const values = [...inputFields];
-  values.splice(index, 1);
-  setInputField(values);
-}
+  let handleChange = (index, e) => {
+    let newFormValues = [...formValues];
+    newFormValues[index][e.target.name] = e.target.value;
+    setFormValues(newFormValues);
+  };
 
-// Submit Form
-function handleSubmit(event){
-  event.preventDefault();
-  console.log("Submit Your Form successfully", inputFields)
-}
+  let addFormFields = (index) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(index + 1, 0, { name: "" });
+    setFormValues(newFormValues);
+    setFormCount(formValues.length);
+  };
+
+  let removeFormFields = (index) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(index, 1);
+    setFormValues(newFormValues);
+  };
+
+  let handleSubmit = (event) => {
+    console.log( formValues )
+    event.preventDefault();
+    // alert(JSON.stringify(formValues));
+  };
+
   return (
-    <>
-    <div className={styles.container}>
-      <Navbar />
-      <h1 className="mt-20">Form handling</h1>
-      <form className={classes.root} onSubmit={handleSubmit}>
-        {inputFields.map((inputField, index) => (
-            <div key={index}>
-              <TextField  type="text" variant="outlined"
-                onChange={event => handleChangeInput(index, event)}/> 
-              {/* <TextField variant="outlined"  type="text" name = "lastName" label= "Last Name"
-                onChange={event => handleChangeInput(index, event)} value = {inputField.lastName}/>  */}
-              {/* <TextField variant="outlined"  type="text" name = "email" label= "Email"
-                onChange={event => handleChangeInput(index, event)} value = {inputField.email}/>  */}
-              <IconButton onClick = {() => handleRemoveFields(index)}>
-                <RemoveIcon/>
-              </IconButton>
-              <IconButton onClick = {() => handleAddFields(index + 1)}>
-                <ControlPointIcon />
-              </IconButton>
-            </div>
-          ))
-        }
-        <Button className={classes.button} variant="contained" color ="primary" type ="submit"> Send</Button>
-      </form>
-      <Footer/>
-    </div>
-    </>
-  )
-}
+   <>
+    <Navbar />
+    <form onSubmit={handleSubmit}>
+      {formValues.map((element, index) => (
+        <div className="form-inline" key={index}>
+          <label>Name</label>
+          <TextField
+            type="text"
+            name="name"
+            value={element.name || ""}
+            onChange={(e) => handleChange(index, e)}
+          />
+          {index ? (
+            <>
+              <button
+                className="button add"
+                type="button"
+                onClick={() => addFormFields(index)}
+              >
+                Add
+              </button>
+              <button
+                type="button"
+                className="button remove"
+                onClick={() => removeFormFields(index)}
+              >
+                Remove
+              </button>
+            </>
+          ) : null}
+        </div>
+      ))}
+      <div className="button-section">
+        {formCount < 1 ? (
+          <button
+            className="button add"
+            type="button"
+            onClick={() => addFormFields()}
+          >
+            Add
+          </button>
+        ) : (
+          ""
+        )}
+        <button className="button submit" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+   </>
+  );
+};

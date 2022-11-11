@@ -77,5 +77,13 @@ a {
   padding: 10px 30px;
   border-radius: 30px;
   margin: 10px auto 20px;
-  
+}
+.button{
+  background: #212529;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 35px;
+  border-radius: 6px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
